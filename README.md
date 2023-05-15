@@ -26,7 +26,7 @@ cd TargetFusion
 git clone https://github.com/HuanYuu/TargetFusion.git
 ```
   
-**step2**: Download reference file and construct gene_stand file follow reference/README_REF.md  
+**step2**: Download reference file and construct gene_stand file follow [reference/README_REF.md](https://github.com/HuanYuu/TargetFusion/blob/main/reference/README_REF.md)  
   
 **step3**: Move or link Porechop/\* to 'TargetFusion/Porechop' (OR modify porechop path in TargetFusion.py)  
 
@@ -70,7 +70,7 @@ When you run command above, an output example:
 * Shell  
 * sample.list.reconfig  
 
-Then, all the shell will store in "Shell" directory.  
+Then, all shells will be stored in "Shell" directory.  
 If you have pooling data with different barcodes which needs to do debarcode, "step0_debarcode.sh" will be in "Shell" directory, and you need run step0 first.
 After "step0_debarcode.sh" finished or you don't need debarcode, you can run all these fusion analysis shell together.  
   
