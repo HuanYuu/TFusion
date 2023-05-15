@@ -1,6 +1,8 @@
 # TargetFusion
-A pipeline for (target) long-read fusion detection bases on LongGF.  
+A pipeline for (target) long-read fusion detection bases on LongGF. 
+   
 We integrate data debarcode, QC, mapping, statistics, LongGF fusion detection AND LongGF-result mark/filter together. Users can simply config a sample.list to run different samples at the same time and finally get false positive marked fusion results.  
+  
 For non-target use, users can only use the src/reform_LongGF_Result.py to mark/fiter LongGF log result to futher filter the false positive results.  
   
 # Prerequisite
@@ -30,17 +32,17 @@ git clone https://github.com/HuanYuu/TargetFusion.git
 
 **step4**: prepare a sample.list, target_region.bed, target.fusion.gene.list.  
   
-A sample list: include "sampleID", "libraryID", "barcodeid", "fq_data_path". 
+A sample list(tab or space separate): include "sampleID", "libraryID", "barcodeid", "fq_data_path". 
 One libraryID can share by several sample id (TargetFusion can debarcode).  
 One sampleID can have several fq_data_path (TargetFusion will merge all these data to analysis).  
-
+  
 target_region.bed: include 4 column, chr/start/end/symbol.  
 symbol can be target gene name. software will statistic every symbol's coverage.
-
+  
 target.fusion.gene.list: include gene names. One gene per one line.  
-
+  
 **step5**: Run TargetFusion. See TargetFusion usage for detail.  
-
+  
 # TargetFusion usage
 An example:  
 ```example:
@@ -52,12 +54,12 @@ python TargetFusion.py \
     -rna \
     -gene example_fusion.gene.list.txt
 ```
--s: sample.list
--t: thread
--b: target bed file
--o: output path
--rna: RNA sequence data
--gene: target gene list
+-s: sample.list  
+-t: thread  
+-b: target bed file  
+-o: output path  
+-rna: RNA sequence data  
+-gene: target gene list  
 
 When you run command above, an output example:  
     *Rawdata
