@@ -9,11 +9,14 @@ For non-target use, users can only use the src/reform_LongGF_Result.py to mark/f
 To run TargetFusion.py from raw data to fusion results:
 1. python3
 2. Porechop
-3. NanoStat
-4. NanoPlot
-5. samtools
-6. minimap2
-7. LongGF
+3. NanoFilt
+4. NanoStat
+5. NanoPlot
+6. samtools
+7. minimap2
+8. sambamba
+9. mosdepth
+10. LongGF
 
 Only run src/reform_LongGF_Result.py to reform and mark/fiter LongGF false positive result:
 1. samtools
