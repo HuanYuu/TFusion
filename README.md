@@ -36,7 +36,7 @@ A sample list(tab or space separate): include "sampleID", "libraryID", "barcodei
 One libraryID can share by several sample id (TargetFusion can debarcode).  
 One sampleID can have several fq_data_path (TargetFusion will merge all these data to analysis).  
   
-target_region.bed: include 4 column, chr/start/end/symbol.  
+target_region.bed: include 4 column, chr,start,end,symbol.  
 symbol can be target gene name. software will statistic every symbol's coverage.
   
 target.fusion.gene.list: include gene names. One gene per one line.  
@@ -62,16 +62,16 @@ python TargetFusion.py \
 -gene: target gene list  
 
 When you run command above, an output example:  
-*Rawdata
-*QC
-*Mapping
-*Fusion
-*Report
-*Shell
-*sample.list.reconfig
+* Rawdata  
+* QC  
+* Mapping  
+* Fusion  
+* Report  
+* Shell  
+* sample.list.reconfig  
 
 Then, all the shell will store in "Shell" directory.  
-If you have pooling data with different barcode that need to do debarcode, "step0_debarcode.sh" will in "Shell" directory, and you need run step0 first.
+If you have pooling data with different barcodes which needs to do debarcode, "step0_debarcode.sh" will be in "Shell" directory, and you need run step0 first.
 After "step0_debarcode.sh" finished or you don't need debarcode, you can run all these fusion analysis shell together.  
   
 For a local running example:
