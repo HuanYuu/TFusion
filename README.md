@@ -73,6 +73,7 @@ When you run command above, an output example:
 Then, all the shell will store in "Shell" directory.  
 If you have pooling data with different barcode that need to do debarcode, "step0_debarcode.sh" will in "Shell" directory, and you need run step0 first.
 After "step0_debarcode.sh" finished or you don't need debarcode, you can run all these fusion analysis shell together.  
+  
 For a local running example:
 ```example
 cd Shell
