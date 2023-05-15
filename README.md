@@ -62,13 +62,13 @@ python TargetFusion.py \
 -gene: target gene list  
 
 When you run command above, an output example:  
-    *Rawdata
-    *QC
-    *Mapping
-    *Fusion
-    *Report
-    *Shell
-    *sample.list.reconfig
+*Rawdata
+*QC
+*Mapping
+*Fusion
+*Report
+*Shell
+*sample.list.reconfig
 
 Then, all the shell will store in "Shell" directory.  
 If you have pooling data with different barcode that need to do debarcode, "step0_debarcode.sh" will in "Shell" directory, and you need run step0 first.
