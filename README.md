@@ -3,7 +3,7 @@ A pipeline for (target) long-read fusion detection.
    
 We integrated data debarcode, QC, mapping, statistics, fusion detection(based on LongGF) and false positive mark/filter together. Users can simply config a sample.list to run different samples at the same time and finally get false positive fusion marked results and statistic results.  
   
-For non-pipeline using, users can only utilize the src/reform_LongGF_Result.py to reform and mark/filter LongGF log result. This futher filter can reduce more than 90% fasle positvie results in our test.  
+For non-pipeline using, users can only utilize the [**src/reform_LongGF_Result.py**](https://github.com/HuanYuu/TargetFusion/blob/main/src/reform_LongGF_Result.py) to reform and mark/filter LongGF log result. This futher filter can reduce more than 90% fasle positvie results in our test.  
   
 # Prerequisite
 To run TargetFusion.py from raw data to fusion results:
