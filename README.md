@@ -97,25 +97,25 @@ After "step0_debarcode.sh" finished (or you don't need to debarcode), you can ru
 A run_sampleID_analysis.sh example:  
 ```run_example_analysis.sh
 set -e
-echo run all analysis of example start: `date`
+echo run all analysis of sampleID start: `date`
 ## step1
-sh /testpath/Rawdata/example/example_mergefq.sh
+sh /testpath/Rawdata/sampleID/sampleID_mergefq.sh
 ## step2
-sh /testpath/Rawdata/example/example_raw.stat.sh &
+sh /testpath/Rawdata/sampleID/sampleID_raw.stat.sh &
 ## step3
-sh /testpath/QC/example/example_qc.sh
+sh /testpath/QC/sampleID/sampleID_qc.sh
 ## step4
-sh /testpath/QC/example/example_nanoplot.sh &
+sh /testpath/QC/sampleID/sampleID_nanoplot.sh &
 ## step5
-sh /testpath/Mapping/example/example_mapping.sh
+sh /testpath/Mapping/sampleID/sampleID_mapping.sh
 ## step6
-sh /testpath/Fusion/example/example_fusion_lgf.sh &
+sh /testpath/Fusion/sampleID/sampleID_fusion_lgf.sh &
 ## step7
-sh /testpath/Mapping/example/example_mapstat.sh &
+sh /testpath/Mapping/sampleID/sampleID_mapstat.sh &
 ## step8
 wait
-sh /testpath/Mapping/example/example_reformstat.sh
-echo run all analysis of example end: `date`
+sh /testpath/Mapping/sampleID/sampleID_reformstat.sh
+echo run all analysis of sampleID end: `date`
 ```
   
 For a local running example:
