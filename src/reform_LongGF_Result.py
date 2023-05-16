@@ -17,6 +17,9 @@ __comment__ = '''Filter and reform the result of LongGF. Filter parameters:
 import os
 import argparse
 from argparse import RawTextHelpFormatter
+##software
+
+samtools='samtools'
 
 def safeopen(infile, mode):
     '''safe open file or gziped file'''
@@ -61,7 +64,7 @@ def getdepth(bamfile, region, skippara):
     if not os.path.exists('tmp_depth_info'):
         os.system('mkdir tmp_depth_info')
     if skippara == 'N':
-        os.system('/data01/Work/yuhuan/Software/Miniconda3/envs/fusions/bin/samtools depth -aa -d 80000 -r %s %s > tmp_depth_info/%s.%s.depth.txt' %(region, bamfile, bamname, region))
+        os.system('%s depth -aa -d 100000 -r %s %s > tmp_depth_info/%s.%s.depth.txt' %(samtools, region, bamfile, bamname, region))
     tempdepth = open('tmp_depth_info/'+bamname+'.'+region+'.depth.txt', 'r')
     depthlist = []
     for line in tempdepth:
