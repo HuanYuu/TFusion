@@ -14,3 +14,5 @@ cat Homo_sapiens.GRCh38.109.gtf |  awk -F"\t" '{if($1!~/^#/) print}' | awk -F"\t
 ```  
 
 There is an example file "Homo_sapiens.GRCh38.109.gene.strand.txt" in the "reference" directory.  
+  
+**Note**: if you use difference reference file or difference file name, you need modify all these reference files in TargetFusion.py(line 46-49).   
