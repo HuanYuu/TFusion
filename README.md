@@ -82,6 +82,7 @@ python TargetFusion.py \
 -gene: target gene list  
 
 # TargetFusion result
+## directory and shell
 When you run command above, an output example:  
 * **Rawdata**  (debarcode and get raw fq data)  
 * **QC**  (raw data QC, get clean data)  
