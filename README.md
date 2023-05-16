@@ -94,6 +94,30 @@ For every sample, integrated analysis shell is stored in "Shell" directory, name
 If you have pooling data with different barcodes which needs to do debarcode, "step0_debarcode.sh" will be in "Shell" directory, and you need to run step0 first.  
 After "step0_debarcode.sh" finished (or you don't need to debarcode), you can run all fusion analysis shells together.  
   
+A run_sampleID_analysis.sh example:  
+```run_example_analysis.sh
+set -e
+echo run all analysis of example start: `date`
+## step1
+sh /testpath/Rawdata/example/example_mergefq.sh
+## step2
+sh /testpath/Rawdata/example/example_raw.stat.sh &
+## step3
+sh /testpath/QC/example/example_qc.sh
+## step4
+sh /testpath/QC/example/example_nanoplot.sh &
+## step5
+sh /testpath/Mapping/example/example_mapping.sh
+## step6
+sh /testpath/Fusion/example/example_fusion_lgf.sh &
+## step7
+sh /testpath/Mapping/example/example_mapstat.sh &
+## step8
+wait
+sh /testpath/Mapping/example/example_reformstat.sh
+echo run all analysis of example end: `date`
+```
+  
 For a local running example:
 ```example
 cd Shell
