@@ -37,11 +37,11 @@ Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path i
 **step4**:  
 Prepare sample.list, target_region.bed, target.fusion.gene.list.  
   
-* *sample list* (tab or space separate): include "sampleID", "libraryID", "barcodeID", "fq_data_path".  
+1)*sample list* (tab or space separate): include "sampleID", "libraryID", "barcodeID", "fq_data_path".  
 One libraryID can map to several sample id (TargetFusion can debarcode).  
 One sampleID can have several fq_data_path, one fq_data_path per line (TargetFusion will merge all these data to analysis).  
   
-  sample.list example1:
+sample.list example1:
 |#sampleID  |libraryID  |barcodeID  |fq_data_path  |
 |----       |----       |----       |----          |
 |sample1    |LB01       |-          |path/data1.fq |
@@ -56,9 +56,9 @@ One sampleID can have several fq_data_path, one fq_data_path per line (TargetFus
 |sample3    |LB04       |BC01       |path/data4.fq |
 |sample4    |LB04       |BC02       |path/data4.fq |
   
-* *target_region.bed*: include 4 column, chr, start, end, symbol. Symbol can be target gene name. Software will statistic every symbol's coverage.
+2)*target_region.bed*: include 4 column, chr, start, end, symbol. Symbol can be target gene name. Software will statistic every symbol's coverage.
   
-* *target.fusion.gene.list*: include target gene names. One gene per one line.  
+3)*target.fusion.gene.list*: include target gene names. One gene per one line.  
   
 **step5**:  
 Run TargetFusion. See **TargetFusion usage** for detail.  
