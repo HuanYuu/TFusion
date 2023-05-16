@@ -23,23 +23,23 @@ Only run src/reform_LongGF_Result.py to reform and mark/fiter LongGF log result:
   
 # How to use
 **step1**:  
-  Install PREREQUISITE software and download TargetFusion:  
+Install PREREQUISITE software and download TargetFusion:  
 ```Download TargetFusion:
 git clone https://github.com/HuanYuu/TargetFusion.git
 ```
   
 **step2**:  
-  Download reference files and construct gene_stand file follow [reference/README_REF.md](https://github.com/HuanYuu/TargetFusion/blob/main/reference/README_REF.md)  
+Download reference files and construct gene_stand file follow [reference/README_REF.md](https://github.com/HuanYuu/TargetFusion/blob/main/reference/README_REF.md)  
   
 **step3**:  
-  Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path in TargetFusion.py), see [Porechop/README_porechop.md](https://github.com/HuanYuu/TargetFusion/blob/main/Porechop/README_porechop.md)  
+Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path in TargetFusion.py), see [Porechop/README_porechop.md](https://github.com/HuanYuu/TargetFusion/blob/main/Porechop/README_porechop.md)  
 
 **step4**:  
-  Prepare sample.list, target_region.bed, target.fusion.gene.list.  
+Prepare sample.list, target_region.bed, target.fusion.gene.list.  
   
-  sample list(tab or space separate): include "sampleID", "libraryID", "barcodeID", "fq_data_path". 
-  One libraryID can map to several sample id (TargetFusion can debarcode).  
-  One sampleID can have several fq_data_path, one fq_data_path per line (TargetFusion will merge all these data to analysis).  
+1) *sample list* (tab or space separate): include "sampleID", "libraryID", "barcodeID", "fq_data_path".  
+One libraryID can map to several sample id (TargetFusion can debarcode).  
+One sampleID can have several fq_data_path, one fq_data_path per line (TargetFusion will merge all these data to analysis).  
   
   sample.list example1:
 |#sampleID  |libraryID  |barcodeID  |fq_data_path  |
@@ -56,12 +56,12 @@ git clone https://github.com/HuanYuu/TargetFusion.git
 |sample3    |LB04       |BC01       |path/data4.fq |
 |sample4    |LB04       |BC02       |path/data4.fq |
   
-  target_region.bed: include 4 column, chr, start, end, symbol. Symbol can be target gene name. Software will statistic every symbol's coverage.
+2) *target_region.bed*: include 4 column, chr, start, end, symbol. Symbol can be target gene name. Software will statistic every symbol's coverage.
   
-  target.fusion.gene.list: include target gene names. One gene per one line.  
+3) *target.fusion.gene.list*: include target gene names. One gene per one line.  
   
 **step5**:  
-  Run TargetFusion. See **TargetFusion usage** for detail.  
+Run TargetFusion. See **TargetFusion usage** for detail.  
   
 # TargetFusion usage
 An example:  
@@ -82,13 +82,13 @@ python TargetFusion.py \
 -gene: target gene list  
 
 When you run command above, an output example:  
-* Rawdata  (debarcode and get raw fq data)  
-* QC  (raw data QC, get clean data)  
-* Mapping  (mapping, get mapped bam and target statistic results)  
-* Fusion  (fusion detection)  
-* Report  (save final statistic and fusion results)  
-* Shell  (save every sample's run shell)  
-* sample.list.reconfig  (reconfiged sample.list)  
+* **Rawdata**  (debarcode and get raw fq data)  
+* **QC**  (raw data QC, get clean data)  
+* **Mapping**  (mapping, get mapped bam and target statistic results)  
+* **Fusion**  (fusion detection)  
+* **Report**  (save final statistic and fusion results)  
+* **Shell**  (save every sample's run shell)  
+* **sample.list.reconfig**  (reconfiged sample.list)  
 
 For every sample, integrated analysis shell is stored in "Shell" directory, name as "run_sampleID_analysis.sh".  
 If you have pooling data with different barcodes which needs to do debarcode, "step0_debarcode.sh" will be in "Shell" directory, and you need to run step0 first.  
