@@ -18,9 +18,6 @@ import os
 import argparse
 from argparse import RawTextHelpFormatter
 
-##
-samtools = 'samtools'
-
 def safeopen(infile, mode):
     '''safe open file or gziped file'''
     ofile = os.path.abspath(infile)
@@ -64,7 +61,7 @@ def getdepth(bamfile, region, skippara):
     if not os.path.exists('tmp_depth_info'):
         os.system('mkdir tmp_depth_info')
     if skippara == 'N':
-        os.system('%s depth -aa -d 100000 -r %s %s > tmp_depth_info/%s.%s.depth.txt' %(samtools region, bamfile, bamname, region))
+        os.system('/data01/Work/yuhuan/Software/Miniconda3/envs/fusions/bin/samtools depth -aa -d 80000 -r %s %s > tmp_depth_info/%s.%s.depth.txt' %(region, bamfile, bamname, region))
     tempdepth = open('tmp_depth_info/'+bamname+'.'+region+'.depth.txt', 'r')
     depthlist = []
     for line in tempdepth:
@@ -196,11 +193,6 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                     if downavedp < tgenedepth:
                                         conditionflag = True
                                         #print('downavedp filter, capture_gene_downstream_depth<100')
-                            if downavedp > 0:
-                                furate = round(float(support_reads_num)/downavedp*100, 3)
-                                if furate < 0.5:  ## 0.1%, for any gene in capgenelist
-                                    conditionflag = True
-                                    #print('down_furate filter, downstream_fusion_rate<0.5%')
                         else:
                             conditionflag = True
                             #print('down_multi filter, downstream_multi_gene')
@@ -216,14 +208,19 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                     if upavedp < tgenedepth:
                                         conditionflag = True
                                         #print('upavedp filter, capture_gene_upstream_depth<100')
-                                    if upavedp>0:
-                                        furate = round(float(support_reads_num)/upavedp*100, 3)
-                                        if furate < 0.5:  ## 0.1%, for any gene in capgenelist
-                                            conditionflag = True
-                                            #print('up_fu filter, upstream_fusion_rate < 0.5%')
                         else:
                             conditionflag = True
                             #print('up_multi filter, upstream_multi_gene')
+                        if len(downstreambp) == 1 and len(upstreambp) == 1:
+                            if downstreamgene[0] in capgenelist:
+                                totaldepth = downavedp
+                            elif upstreamgene[0] in capgenelist:
+                                totaldepth = upavedp
+                            else:
+                                totaldepth = max(downavedp, upavedp)
+                            furate = round(float(support_reads_num)/totaldepth*100, 3)
+                            if furate < 0.5:  ## 0.5%, for any gene in capgenelist
+                                conditionflag = True
                     if int(support_reads_num) < 5:
                         conditionflag = True
                         #print('support num filter, support_reads_number<5')
