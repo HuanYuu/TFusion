@@ -81,6 +81,7 @@ python TargetFusion.py \
 -rna: is RNA sequence data  
 -gene: target gene list  
 
+# TargetFusion result
 When you run command above, an output example:  
 * **Rawdata**  (debarcode and get raw fq data)  
 * **QC**  (raw data QC, get clean data)  
@@ -123,3 +124,58 @@ For a local running example:
 cd Shell
 for i in `ls run*_analysis.sh`;do nohup sh $i > $i.log & done
 ```
+
+## report
+User will get statistic and fusion result in Report:
+1. sampleID.mosdepth_reform.xls
+2. sampleID.LongGF.reform.xls
+
+*sampleID.mosdepth_reform.xls* example:  
+|Sample  |sampleID|
+|--------|--------|
+|Raw bases(Mb)|    52.55|
+|Raw reads(M)|    0.17|
+|Raw mean read length|    315.4|
+|Raw read length N50|     354.0|
+|Raw mean read quality|   9.3|
+|Raw read quality>Q7|     162831 (97.7%) 51.7Mb|
+|Raw read quality>Q10|    45002 (27.0%) 15.2Mb|
+|QC bases(Mb)|    48.85|
+|QC reads(M)|     0.16|
+|QC mean read length|     311.1|
+|QC read length N50|      350.0|
+|QC mean read quality|    9.4|
+|QC read quality>Q7|      157052 (100.0%) 48.9Mb|
+|QC read quality>Q10|     45784 (29.2%) 15.1Mb|
+|QC pass rate of bases(%)|        92.97|
+|QC pass rate of reads(%)|        94.26|
+|Mapping rate of reads(%)|        88.89|
+|Target region length (bp)|       41756|
+|Capture rate of bases (%)|       22.97|
+|Average depth on target (x)|     210.74|
+|Coverage ≥ 1x (%)|       95.89|
+|Coverage ≥ 50x (%)|      84.63|
+|Coverage ≥ 100x (%)|     63.63|
+|Coverage ≥ 200x (%)|     20.4|
+|Coverage ≥ 500x (%)|     8.79|
+|ABL2 length (bp)|        12632|
+|ABL2 average depth (x)|  103.62|
+|ABL2 covreage ≥1x (%)|   99.94|
+|ABL2 covreage ≥50X (%)|  93.49|
+|ABL2 covreage ≥100X (%)| 38.96|
+|ABL2 covreage ≥200X (%)| 0.0|
+|ABL2 covreage ≥500X (%)| 0.0|
+|CRLF2 length (bp)|       1612|
+|CRLF2 average depth (x)| 4128.94|
+|CRLF2 covreage ≥1x (%)|  100.0|
+|CRLF2 covreage ≥50X (%)| 100.0|
+|CRLF2 covreage ≥100X (%)|        100.0|
+|CRLF2 covreage ≥200X (%)|        96.9|
+|CRLF2 covreage ≥500X (%)|        96.15|
+  
+*sampleID.LongGF.reform.xls* example:  
+|sampleID.LongGF_Gene_pairs|     Upstream_gene|   Downstream_gene| Upstream_gene_breakpoint|        Downstream_gene_breakpoint|      Support_reads_number|    Upstream_gene_20bp_breakpoint_depth|       Downstream_gene_20bp_breakpoint_depth|   Fusion_rate(%)|  Multiple_strand_filter|
+|----|----|----|----|----|----|----|----|----|----|
+|P2RY8-CRLF2|     P2RY8(-)|        CRLF2(-)|        X:1536919|       X:1212636|       1474|    2500.95| 3225.75| 45.695|
+|ABL2,ADGRF4-|    ABL2(-),ADGRF4(+)|     |          1:179108161,6:47715392|     |     6|       /|       /|       /|       Filter|
+|CSNK1G2-CXCR4|   CSNK1G2(+)|      CXCR4(-)|        19:1980390|      2:136115911|     6|       2026.3|  8.0|     75.0|    Filter|
