@@ -15,11 +15,12 @@ __date__ = '2023.03.28'
 __comment__ = '''QC, mapping, fusion, stats'''
 
 import os
+import sys
 import argparse
 from argparse import RawTextHelpFormatter
 
 ##scriptpath
-scriptpath = os.path.dirname(os.path.abspath(os.path.basename(__file__)))
+scriptpath = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 ###Software
 ##********************** User can modify all these softwares' and databse files' path *************************
@@ -36,7 +37,7 @@ samtools = 'samtools'
 sambamba = 'sambamba'
 ##statistic and plot
 nanostat = 'NanoStat'
-nanoplot = 'NanoPlot'
+#nanoplot = 'NanoPlot'
 mosdepth = 'mosdepth'
 statreform = scriptpath+'/src/mosdepth_bedstat_reform.py'
 ##fusion 
@@ -91,17 +92,16 @@ def saminfo(samlist, outdir):
         libid = uline[1]
         barcodeid = uline[2]
         fqdata = uline[3]
+        if not os.path.isabs(fqdata):
+            fqdata = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(samlist)), fqdata))
         prefix = '_'.join([sampleid, libid, barcodeid])
         prefixtmp = '||'.join([sampleid, libid, barcodeid])
         if sampleid not in samplelist:
             samplelist.append(sampleid)
-        #samdic.setdefault(sampleid,{})['lib'] = libid
-        #samdic.setdefault(sampleid,{})['bcid'] = barcodeid
-        #samdic.setdefault(sampleid,{})['rawfq'] = fqdata
         ##check if there is pooling barcode id
         if barcodeid == '' or barcodeid=='-' or barcodeid=='/':
             barcodeid = 'none'
-            newline = line
+            newline = '\t'.join([sampleid, libid, barcodeid, fqdata])+'\n'
             prefix = '_'.join([sampleid, libid, barcodeid])
             bcfqdata = fqdata
         else:
@@ -116,7 +116,7 @@ def saminfo(samlist, outdir):
         if libid not in pooldic:
             pooldic.setdefault(libid, {})[fqdata] = [[sampleid, barcodeid]]
         if fqdata not in pooldic[libid]:
-            pooldic.setdefault(libid, {})[fqdata] = [[sampleid, barcodeid]]
+            pooldic[libid][fqdata] = [[sampleid, barcodeid]]
         if [sampleid, barcodeid] not in pooldic[libid][fqdata]:
             pooldic[libid][fqdata].append([sampleid, barcodeid])
         #construct sample dic, one prefixtmp may links to many fastq(many cell).
@@ -124,9 +124,9 @@ def saminfo(samlist, outdir):
         if sampleid not in samdic:
             samdic.setdefault(sampleid,{})[prefixtmp] = [bcfqdata]
         if prefixtmp not in samdic[sampleid]:
-            samdic.setdefault(sampleid,{})[prefixtmp] = [bcfqdata]
+            samdic[sampleid][prefixtmp] = [bcfqdata]
         if bcfqdata not in samdic[sampleid][prefixtmp]:
-            samdic.setdefault(sampleid,{})[prefixtmp].append(bcfqdata)
+            samdic[sampleid][prefixtmp].append(bcfqdata)
     return samdic, samplelist, pooldic, barcodelist
 
 def getnanostat(statfile):
@@ -168,12 +168,12 @@ def init():
 
 def main():
     argv = init()
-    slist = argv.sample_list
-    outdir = argv.outdir
+    slist = os.path.abspath(argv.sample_list)
+    outdir = os.path.abspath(argv.outdir)
     if not os.path.exists(outdir):
         os.system('mkdir -p %s' %outdir)
-    bedfile = argv.bed
-    genefile = argv.target_gene
+    bedfile = os.path.abspath(argv.bed)
+    genefile = os.path.abspath(argv.target_gene)
     threadnum = argv.thread
     lgf_set = ' '.join(argv.longgf_set.strip().split(','))
 
@@ -320,22 +320,27 @@ def main():
         samshell_list.append(filtershf)
         # nanoplot, samid_nanoplot.sh
         # statfile: qcpath/samid/samid_nanoplot.NanoStats.txt
-        plotshf = filterpath+'/'+samid+'_nanoplot.sh'
-        plotsh = open(filterpath+'/'+samid+'_nanoplot.sh', 'w')
-        plotcmd = 'echo QC_statistic_plot start: `date` \n'
+        plotshf = filterpath+'/'+samid+'_qc_nanostat.sh'
+        plotsh = open(filterpath+'/'+samid+'_qc_nanostat.sh', 'w')
+        plotcmd = 'echo QC_statistic start: `date` \n'
         plotcmd += 'cd %s\n' %filterpath
-        plotcmd += nanoplot+' -t %s' %threadnum+ \
-                ' \\\n    --fastq %s' %filterfq+ \
-                ' \\\n    --plots dot'+ \
-                ' \\\n    --maxlength 30000'+ \
-                ' \\\n    --prefix %s' %(samid+'_nanoplot.')+ \
-                ' \\\n    --info_in_report \n'
-        plotcmd += 'echo QC_statistic_plot end: `date` \n'
+        #plotcmd += nanoplot+' -t %s' %threadnum+ \
+        #        ' \\\n    --fastq %s' %filterfq+ \
+        #        ' \\\n    --plots dot'+ \
+        #        ' \\\n    --maxlength 30000'+ \
+        #        ' \\\n    --prefix %s' %(samid+'_nanoplot.')+ \
+        #        ' \\\n    --info_in_report \n'
+        plotcmd += nanostat+' -t %s' %threadnum+ \
+                    ' \\\n    --fastq %s' %filterfq+ \
+                    ' \\\n    -o %s' %filterpath+ \
+                    ' \\\n    -n %s\n' %(samid+'.qc.nanostat.xls')
+        plotcmd += 'echo QC_statistic end: `date` \n'
         plotsh.write(plotcmd)
         plotsh.close()
         #****** write plotshf ******
         samshell_list.append(plotshf+' &')
-        qcstatfile = filterpath+'/'+samid+'_nanoplot.NanoStats.txt'
+        #qcstatfile = filterpath+'/'+samid+'_nanoplot.NanoStats.txt'
+        qcstatfile = filterpath+'/'+samid+'.qc.nanostat.xls'
         # mapping
         mapsampath = cpath(mappath, samid)
         absfilterfq = filterpath+'/'+filterfq
