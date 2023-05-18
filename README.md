@@ -62,8 +62,11 @@ sample.list example1:
 **step5**:  
 Run TargetFusion. See **TargetFusion usage** for detail.  
   
+# A real example
+See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for a real example. We also provide a demo data "BCR_ABL1.test.fq.gz" and results files in [example](https://github.com/HuanYuu/TargetFusion/blob/main/example).  
+
 # TargetFusion usage
-An example. See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for comprehensive file and results:  
+##Simple usage:  
 ```example:
 python TargetFusion.py \
     -s sample.list \
@@ -81,8 +84,8 @@ python TargetFusion.py \
 -rna: is RNA sequence data  
 -gene: target gene list  
 
-# TargetFusion result
-## directory and shell
+## TargetFusion result
+### directory and shell
 When you run command above, an output example:  
 * **Rawdata**  (debarcode and get raw fq data)  
 * **QC**  (raw data QC, get clean data)  
