@@ -9,7 +9,7 @@ For non-pipeline using, users can only utilize the [**src/reform_LongGF_Result.p
 To run TargetFusion.py from raw data to fusion results:
 1. python3
 2. Porechop (debarcode and cut adapter)
-3. NanoStat (raw data statistic)
+3. NanoStat (raw and clean data statistic)
 4. NanoFilt (short and low quality reads filter)
 5. minimap2 (mapping)
 6. samtools (bam transform and samtools depth statistic)
@@ -63,7 +63,7 @@ sample.list example1:
 Run TargetFusion. See **TargetFusion usage** for detail.  
   
 # A real example
-See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for a real example. We also provide a demo data "BCR_ABL1.test.fq.gz" and results files in [example](https://github.com/HuanYuu/TargetFusion/blob/main/example).  
+See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for a real example. We also provide a demo data "BCR_ABL1.test.fq.gz" and main results files in [example](https://github.com/HuanYuu/TargetFusion/blob/main/example).  
 
 # TargetFusion usage
 ##Simple usage:  

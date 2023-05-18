@@ -1,33 +1,33 @@
 Sample	BCR_ABL1_standard
-Raw bases(Mb)	68.0
-Raw reads(M)	0.1
-Raw mean read length	680.0
-Raw read length N50	792.0
+Raw bases(Mb)	6.48
+Raw reads(M)	0.01
+Raw mean read length	647.7
+Raw read length N50	744.0
 Raw mean read quality	7.8
-Raw read quality>Q7	100000 (100.0%) 68.0Mb
-Raw read quality>Q10	1359 (1.4%) 0.8Mb
-QC bases(Mb)	39.72
-QC reads(M)	0.08
-QC mean read length	490.3
-QC read length N50	620.0
+Raw read quality>Q7	10000 (100.0%) 6.5Mb
+Raw read quality>Q10	111 (1.1%) 0.1Mb
+QC bases(Mb)	3.74
+QC reads(M)	0.01
+QC mean read length	459.9
+QC read length N50	573.0
 QC mean read quality	8.1
-QC read quality>Q7	81014 (100.0%) 39.7Mb
-QC read quality>Q10	4540 (5.6%) 1.4Mb
-QC pass rate of bases(%)	58.42
-QC pass rate of reads(%)	81.01
-Mapping rate of reads(%)	85.6
+QC read quality>Q7	8138 (100.0%) 3.7Mb
+QC read quality>Q10	454 (5.6%) 0.1Mb
+QC pass rate of bases(%)	57.79
+QC pass rate of reads(%)	81.38
+Mapping rate of reads(%)	85.3
 Target region length (bp)	6153
-Capture rate of bases (%)	44.23
-Average depth on target (x)	1743.63
-Coverage ≥ 1x (%)	98.54
-Coverage ≥ 50x (%)	95.58
-Coverage ≥ 100x (%)	95.32
-Coverage ≥ 200x (%)	94.17
-Coverage ≥ 500x (%)	85.37
+Capture rate of bases (%)	44.94
+Average depth on target (x)	171.95
+Coverage ≥ 1x (%)	98.03
+Coverage ≥ 50x (%)	85.39
+Coverage ≥ 100x (%)	83.7
+Coverage ≥ 200x (%)	39.62
+Coverage ≥ 500x (%)	0.0
 ABL1 length (bp)	6153
-ABL1 average depth (x)	1811.89
-ABL1 covreage ≥1x (%)	98.54
-ABL1 covreage ≥50X (%)	95.58
-ABL1 covreage ≥100X (%)	95.32
-ABL1 covreage ≥200X (%)	94.17
-ABL1 covreage ≥500X (%)	85.37
+ABL1 average depth (x)	175.38
+ABL1 covreage ≥1x (%)	98.03
+ABL1 covreage ≥50X (%)	85.39
+ABL1 covreage ≥100X (%)	83.7
+ABL1 covreage ≥200X (%)	39.62
+ABL1 covreage ≥500X (%)	0.0
