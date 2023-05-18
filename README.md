@@ -37,8 +37,8 @@ Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path i
 Prepare sample.list, target_region.bed, target.fusion.gene.list.  
   
 1)*sample list* (tab or space separate): include "sampleID", "libraryID", "barcodeID", "fq_data_path".  
-One libraryID can map to several sample id (TargetFusion can debarcode).  
-One sampleID can have several fq_data_path, one fq_data_path per line (TargetFusion will merge all these data to analysis).  
+One libraryID can maps to several sample id (TargetFusion can debarcode).  
+One sampleID can maps to several data path(fq_data_path), (TargetFusion will merge all these data to analysis).  
   
 sample.list example1:
 |#sampleID  |libraryID  |barcodeID  |fq_data_path  |
@@ -60,13 +60,13 @@ sample.list example1:
 3)*target.fusion.gene.list*: include target gene names. One gene per one line.  
   
 **step5**:  
-Run TargetFusion. See **TargetFusion usage** for detail.  
+Run TargetFusion. See **A real example** for an example, see **TargetFusion usage** for detail.  
   
 # A real example
-See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for a real example. We also provide a demo data "BCR_ABL1.test.fq.gz" and main results files in [example](https://github.com/HuanYuu/TargetFusion/blob/main/example).  
+See [example/run_rna_fusion.sh](https://github.com/HuanYuu/TargetFusion/blob/main/example/run_rna_fusion.sh) for a real example. We also provide a demo data **BCR_ABL1.test.fq.gz** and main results files in [example](https://github.com/HuanYuu/TargetFusion/blob/main/example).  
 
 # TargetFusion usage
-##Simple usage:  
+## Simple usage:  
 ```example:
 python TargetFusion.py \
     -s sample.list \
@@ -77,12 +77,12 @@ python TargetFusion.py \
     -gene example_fusion.gene.list.txt
 ```
   
--s: a sample list  
--t: thread  
--b: target region bed file  
--o: output path  
--rna: is RNA sequence data  
--gene: target gene list  
+-s: a sample list
+-t: thread for run
+-b: target region bed file
+-o: output path
+-rna: is RNA sequence data
+-gene: target gene list
 
 ## TargetFusion result
 ### directory and shell
@@ -95,8 +95,8 @@ When you run command above, an output example:
 * **Shell**  (save every sample's run shell)  
 * **sample.list.reconfig**  (reconfiged sample.list)  
 
-For every sample, integrated analysis shell is stored in "Shell" directory, name as "run_sampleID_analysis.sh".  
-If you have pooling data with different barcodes which needs to do debarcode, "step0_debarcode.sh" will be in "Shell" directory, and you need to run step0 first.  
+For every sample, integrated analysis shell is stored in **"Shell"** directory, name as **"run_sampleID_analysis.sh"**.  
+If you have pooling data with different barcodes which needs to do debarcode, **step0_debarcode.sh will be in "Shell" directory, and you need to run step0_debarcode.sh first**.  
 After "step0_debarcode.sh" finished (or you don't need to debarcode), you can run all fusion analysis shells together.  
   
 A run_sampleID_analysis.sh example:  
