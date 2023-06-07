@@ -217,12 +217,18 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                         if len(downstreambp) == 1 and len(upstreambp) == 1:
                             if downstreamgene[0] in capgenelist:
                                 totaldepth = downavedp
+                                supportdepth = upavedp
                             elif upstreamgene[0] in capgenelist:
                                 totaldepth = upavedp
+                                supportdepth = downavedp
                             else:
                                 totaldepth = max(downavedp, upavedp)
+                                supportdepth = min(downavedp, upavedp)
+                            supportrate = round(float(support_reads_num)/supportdepth*100, 3)
                             furate = round(float(support_reads_num)/totaldepth*100, 3)
                             if furate < 0.5:  ## 0.5%, for any gene in capgenelist
+                                conditionflag = True
+                            if supportrate < 5 or supportrate > 100: ## 5%, for support rate, not work in most condition
                                 conditionflag = True
                     if int(support_reads_num) < 5:
                         conditionflag = True
