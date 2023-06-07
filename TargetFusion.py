@@ -80,7 +80,7 @@ def saminfo(samlist, outdir):
     multidic[poolibid][fq]: [[sampleid, barcodeid], [sampleid, barcodeid]]
     '''
     osamlist = safeopen(samlist, 'r')
-    newsamlist = open(outdir+'/sample.list.reconfig', 'w')
+    newsamlist = open(outdir+'/'+os.path.basename(samlist)+'.reconfig', 'w')
     samdic = {}
     samplelist = []
     pooldic = {}
