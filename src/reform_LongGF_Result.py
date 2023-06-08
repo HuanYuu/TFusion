@@ -224,11 +224,13 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                             else:
                                 totaldepth = max(downavedp, upavedp)
                                 supportdepth = min(downavedp, upavedp)
-                            supportrate = round(float(support_reads_num)/supportdepth*100, 3)
+                            theorate = round(float(supportdepth)/totaldepth*100, 3)
                             furate = round(float(support_reads_num)/totaldepth*100, 3)
                             if furate < 0.5:  ## 0.5%, for any gene in capgenelist
                                 conditionflag = True
-                            if supportrate < 5 or supportrate > 100: ## 5%, for support rate, not work in most condition
+                            if theorate < 1: ## 1%, theoretically support fusion rate (if all supportdepth reads are fusions, the detect limit is 1%)
+                                conditionflag = True
+                            if float(supportdepth) < float(support_reads_num)+1: # not confident, theoretically support reads number must larger than support_reads_num.
                                 conditionflag = True
                     if int(support_reads_num) < 5:
                         conditionflag = True
