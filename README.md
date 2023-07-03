@@ -8,7 +8,7 @@ For users who prefer not to use the entire pipeline, there is an alternative opt
 This pipeline offers a streamlined and efficient approach to long-read fusion detection, ensuring reliable and accurate results. Whether users choose to use the entire pipeline or the individual reforming and filtering script, they can expect improved outcomes and reduced false positive rates.
   
 # Prerequisite
-To run TargetFusion.py from raw data to fusion results:
+Run TargetFusion.py from raw data qc to fusion detection:
 1. python3
 2. Porechop (debarcode and cut adapter)
 3. NanoStat (raw and clean data statistic)
@@ -79,12 +79,12 @@ python TargetFusion.py \
     -gene example_fusion.gene.list.txt
 ```
   
--s: a sample list
--t: thread for run
--b: target region bed file
--o: output path
--rna: is RNA sequence data
--gene: target gene list
+-s: a sample list 
+-t: thread for run 
+-b: target region bed file 
+-o: output path 
+-rna: is RNA sequence data 
+-gene: target gene list 
 
 ## TargetFusion result
 ### directory and shell
@@ -97,9 +97,9 @@ When you run command above, an output example:
 * **Shell**  (save every sample's run shell)  
 * **sample.list.reconfig**  (reconfiged sample.list)  
 
-For every sample, integrated analysis shell is stored in **"Shell"** directory, name as **"run_sampleID_analysis.sh"**.  
-If you have pooling data with different barcodes which needs to do debarcode, **step0_debarcode.sh will be in "Shell" directory, and you need to run step0_debarcode.sh first**.  
-After "step0_debarcode.sh" finished (or you don't need to debarcode), you can run all fusion analysis shells together.  
+In the **"Shell"** directory, you will find all integrated analysis shells named **"run_sampleID_analysis.sh"** for each sample. If your data consists of pooled samples with different barcodes that require debarcoding, you will also find a script named **"step0_debarcode.sh"** in the "Shell" directory. In this case, it is necessary to run the "step0_debarcode.sh" script before proceeding with the fusion analysis.
+
+Once the "step0_debarcode.sh" script has finished executing (or if debarcoding is not required), you can proceed to run all the fusion analysis shells together.
   
 A run_sampleID_analysis.sh example:  
 ```run_example_analysis.sh
