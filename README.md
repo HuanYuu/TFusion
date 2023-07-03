@@ -132,6 +132,6 @@ for i in `ls run*_analysis.sh`;do nohup sh $i > $i.log & done
 ```
 
 ## report
-User will get statistic and fusion result in Report. See [example/example_out/Report](https://github.com/HuanYuu/TargetFusion/blob/main/example/example_out/Report) for details:  
+The user will receive statistical information and fusion results in the **Report** directory. For more details, please refer to the [example/example_out/Report](https://github.com/HuanYuu/TargetFusion/blob/main/example/example_out/Report).
 1. sampleID.mosdepth_reform.xls
 2. sampleID.LongGF.reform.xls
