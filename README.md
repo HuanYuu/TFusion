@@ -33,7 +33,7 @@ git clone https://github.com/HuanYuu/TargetFusion.git
 Download reference files and construct gene_stand file follow [reference/README_REF.md](https://github.com/HuanYuu/TargetFusion/blob/main/reference/README_REF.md)  
   
 **step3**:  
-Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path in TargetFusion.py), see [Porechop/README_porechop.md](https://github.com/HuanYuu/TargetFusion/blob/main/Porechop/README_porechop.md) 
+Move or link 'Porechop/\*' to 'TargetFusion/Porechop' (OR modify porechop path in TargetFusion.py), see [Porechop/README_porechop.md](https://github.com/HuanYuu/TargetFusion/blob/main/Porechop/README_porechop.md)  
 Mention: If you have multiplexed data, it is important to perform debarcoding before further analysis. This can be done by configuring the barcode ID and sequence in the **adapter.py** file of the Porechop software. By doing so, the software will be able to identify and remove the barcode sequences from the raw data, allowing for accurate downstream analysis. It is crucial to perform this step to ensure that the data is properly demultiplexed and attributed to the correct samples, avoiding any potential errors or misinterpretations in the analysis. 
 
 **step4**:  
