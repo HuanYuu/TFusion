@@ -195,9 +195,11 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                     capgenenum += 1
                                     if downavedp < tgenedepth:
                                         conditionflag = True
+                                        filtertag.append('capture_gene_downstream_depth<100')
                                         #print('downavedp filter, capture_gene_downstream_depth<100')
                         else:
                             conditionflag = True
+                            filtertag.append('downstream_multi_gene')
                             #print('down_multi filter, downstream_multi_gene')
                         if len(upstreambp) == 1: ##not multi_gene, get 5' depth information
                             if gene_strand_dic[upstreamgene[0]] == '+':
@@ -210,9 +212,11 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                     capgenenum += 1
                                     if upavedp < tgenedepth:
                                         conditionflag = True
+                                        filtertag.append('capture_gene_upstream_depth<100')
                                         #print('upavedp filter, capture_gene_upstream_depth<100')
                         else:
                             conditionflag = True
+                            filtertag.append('upstream_multi_gene')
                             #print('up_multi filter, upstream_multi_gene')
                         if len(downstreambp) == 1 and len(upstreambp) == 1:
                             if downstreamgene[0] in capgenelist:
@@ -228,18 +232,23 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                             furate = round(float(support_reads_num)/totaldepth*100, 3)
                             if furate < 0.5:  ## 0.5%, for any gene in capgenelist
                                 conditionflag = True
-                            if theorate < 1: ## 1%, theoretically support fusion rate (if all supportdepth reads are fusions, the detect limit is 1%)
+                                filtertag.append('fusion_rate<0.5%')
+                            if theorate < 0.6: ## 1%, theoretically support fusion rate (if all supportdepth reads are fusions, the detect limit is 1%)
                                 conditionflag = True
+                                filtertag.append('theoretically_fusion_rate<0.6%')
                             if float(supportdepth) < float(support_reads_num)+1: # not confident, theoretically support reads number must larger than support_reads_num.
                                 conditionflag = True
+                                filtertag.append('breakpoint_average_depth < supported_reads_num')
                     if int(support_reads_num) < 5:
                         conditionflag = True
+                        filtertag.append('supported_reads_num < 5')
                         #print('support num filter, support_reads_number<5')
                     if capgenenum == 0:
                         conditionflag = True
+                        filtertag.append('no_capture_gene')
                         #print('cap_gene_num filter, no fusion genes in capture gene list.')
-                    if  conditionflag:
-                        filtertag.append('Filter')
+                    #if  conditionflag:
+                    #    filtertag.append('Filter')
                     fusion_info_temp = [','.join(upstreamgene)+'-'+','.join(downstreamgene), \
                                         ','.join(upstreamgene_strand), \
                                         ','.join(downstreamgene_strand), \
@@ -249,7 +258,7 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                         str(upavedp), \
                                         str(downavedp), \
                                         str(furate), \
-                                        ';'.join(filtertag)]
+                                        '; '.join(filtertag)]
             if fusion_info_temp != []:
                 fusion_info.append(fusion_info_temp)
     return fusion_info
@@ -303,7 +312,7 @@ def main():
                 'Upstream_gene_20bp_breakpoint_depth', \
                 'Downstream_gene_20bp_breakpoint_depth', \
                 'Fusion_rate(%)', \
-                'Multiple_strand_filter']
+                'Prediction']
     stranddic, multidic = getstrand(strandf)
     fusioncontent = get_fusion(inputf, stranddic, multidic, skipset, bamf, genelist)
     out.write('\t'.join(headinfo)+'\n')

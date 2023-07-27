@@ -1,2 +1,2 @@
-BCR_ABL1_standard.LongGF_Gene_pairs	Upstream_gene	Downstream_gene	Upstream_gene_breakpoint	Downstream_gene_breakpoint	Support_reads_number	Upstream_gene_20bp_breakpoint_depth	Downstream_gene_20bp_breakpoint_depth	Fusion_rate(%)	Multiple_strand_filter
+BCR_ABL1_standard.LongGF_Gene_pairs	Upstream_gene	Downstream_gene	Upstream_gene_breakpoint	Downstream_gene_breakpoint	Support_reads_number	Upstream_gene_20bp_breakpoint_depth	Downstream_gene_20bp_breakpoint_depth	Fusion_rate(%)	Prediction
 BCR-ABL1	BCR(+)	ABL1(+)	22:23289618	9:130854063	32	79.45	103.8	30.829	

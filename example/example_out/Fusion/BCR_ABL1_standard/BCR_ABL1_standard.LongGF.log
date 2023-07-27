@@ -28,7 +28,7 @@ For mapped reads: bases=2354229/3425052(68.74) ins=186480(5.44) del=135010(3.94)
 Open sam file (/data01/Work/yuhuan/Software/TargetFusion/example/example_out/Mapping/BCR_ABL1_standard/BCR_ABL1_standard.readname.sorted.bam).
 Read sam file (/data01/Work/yuhuan/Software/TargetFusion/example/example_out/Mapping/BCR_ABL1_standard/BCR_ABL1_standard.readname.sorted.bam) for gene fusion detection.
 Handle =0 _fg_cand.size()=0 Time-elapsed=0
-Time consumed to read bam: 0.78s
+Time consumed to read bam: 0.84s
 Finish _fg_cand[_gene_pair=81
 Potential_fusion: 1 1
 GF	ABL1:BCR 32 32 supporting reads=32/32 130854061:23;130854062:2;130854067:2;130854068:1;130854069:1;130854071:1;130854075:1;130854077:1 23289607:1;23289609:1;23289610:1;23289611:1;23289616:1;23289619:2;23289620:25 9:130854063 32/0:144:1154 22:23289618 0/32:144:60
