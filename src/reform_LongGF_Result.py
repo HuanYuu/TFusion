@@ -183,6 +183,8 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                     upavedp = '/'
                     furate = '/'
                     tgenedepth = 100
+                    if (downstreamgene[0] in capgenelist) or (upstreamgene[0] in capgenelist):
+                        capgenenum += 1
                     if bamfile != '':
                         if len(downstreambp) == 1:   ##not multi_gene, get 3' depth information
                             if gene_strand_dic[downstreamgene[0]] == '+':
@@ -191,12 +193,10 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                 downregion = downstreambp[0].split(':')[0]+':'+str(int(downstreambp[0].split(':')[1])-20)+'-'+str(int(downstreambp[0].split(':')[1])-1)
                             downavedp = getdepth(bamfile, downregion, skippara)
                             if capgenelist != '':
-                                if downstreamgene[0] in capgenelist:
-                                    capgenenum += 1
-                                    if downavedp < tgenedepth:
-                                        conditionflag = True
-                                        filtertag.append('capture_gene_downstream_depth<100')
-                                        #print('downavedp filter, capture_gene_downstream_depth<100')
+                                if downavedp < tgenedepth:
+                                    conditionflag = True
+                                    filtertag.append('capture_gene_downstream_depth<100')
+                                    #print('downavedp filter, capture_gene_downstream_depth<100')
                         else:
                             conditionflag = True
                             filtertag.append('downstream_multi_gene')
@@ -208,12 +208,10 @@ def get_fusion(log_file, gene_strand_dic, mulit_strand, skippara, bamfile='', ca
                                 upregion = upstreambp[0].split(':')[0]+':'+str(int(upstreambp[0].split(':')[1])+1)+'-'+str(int(upstreambp[0].split(':')[1])+20)
                             upavedp = getdepth(bamfile, upregion, skippara)
                             if capgenelist != '':
-                                if upstreamgene[0] in capgenelist:
-                                    capgenenum += 1
-                                    if upavedp < tgenedepth:
-                                        conditionflag = True
-                                        filtertag.append('capture_gene_upstream_depth<100')
-                                        #print('upavedp filter, capture_gene_upstream_depth<100')
+                                if upavedp < tgenedepth:
+                                    conditionflag = True
+                                    filtertag.append('capture_gene_upstream_depth<100')
+                                    #print('upavedp filter, capture_gene_upstream_depth<100')
                         else:
                             conditionflag = True
                             filtertag.append('upstream_multi_gene')
